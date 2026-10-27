@@ -18,7 +18,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	once.Do(func() {
 		initTemp.Init()
 		mux = router.New()
-		mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+		mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(initTemp.BaseDir()+"/static"))))
 	})
 	mux.ServeHTTP(w, r)
 }
