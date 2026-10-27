@@ -1,4 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-  "functions": { "api/index.go": { "includeFiles": "{pages,static}/**" } }
+  "builds": [
+    { "src": "api/index.go", "use": "@vercel/go", "config": { "includeFiles": ["pages/**", "static/**"] } }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/api/index.go" }]
 }
