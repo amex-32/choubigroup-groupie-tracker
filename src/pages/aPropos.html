@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - Journal de Bord</title>
+    <link rel="stylesheet" href="/static/css/aPropos.css">
+</head>
+
+<body>
+<input type="checkbox" id="toggle-search" class="state-checkbox" style="display: none;" {{if .Query}}checked{{end}}>
+<input type="checkbox" id="toggle-favs" class="state-checkbox" style="display: none;">
+<input type="checkbox" id="toggle-auth" class="state-checkbox" style="display: none;">
+
+<header class="header">
+    <a href="/index">Accueil</a>
+    <a href="/collection">Collection</a>
+    <a href="/ressources">Ressources</a>
+    <a href="/categorie">Catégorie</a>
+    <a href="/aPropos">A-Propos</a>
+    <label for="toggle-favs" class="header-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+    </label>
+    <label for="toggle-auth" class="header-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </label>
+    <label for="toggle-search" class="header-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+    </label>
+</header>
+
+<main class="journal-container">
+    <section class="intro-section">
+        <h1>📓 Journal de Bord : Alex & Fabio</h1>
+        <p class="subtitle">Immersion dans le développement de notre Pokédex Interactif.</p>
+    </section>
+
+    <div class="card glass">
+        <h2>🎨 Maquettes & Vision</h2>
+        <p>Notre projet est né d'une volonté de créer une interface "Glassmorphism" fluide. Découvrez notre travail de conception :</p>
+        <a href="https://www.figma.com/design/UIjPgGnWkAHng9BJGIIAEw/Livrables-projet-groupie-tracker?node-id=0-1&t=W6Cfp4NJuUgucWFC-1" target="_blank" class="btn-link">Accéder au Figma du projet</a>
+    </div>
+
+    <div class="card glass">
+        <h2>🛠️ Chronologie du Projet</h2>
+        <ul class="task-list">
+            <li class="done"><strong>Setup :</strong> Initialisation Go, Repo Git et branche Develop.</li>
+            <li class="done"><strong>Backend :</strong> Connexion API Tyradex et gestion des structures de données.</li>
+            <li class="done"><strong>Architecture :</strong> Mise en place du routing et du système de templates dynamiques.</li>
+            <li class="done"><strong>Frontend :</strong> Intégration du CSS global et des animations d'overlay.</li>
+            <li class="process"><strong>Finalisation :</strong> Debugging des filtres et optimisation du journal de bord.</li>
+        </ul>
+    </div>
+
+    <div class="team-quotes-large">
+        <div class="card glass quote-box">
+            <div class="profile">
+                <h3>Alex</h3>
+                <span class="role">Page d'Index & Système d'Overlays</span>
+            </div>
+            <p>J'ai concentré mes efforts sur la <strong>Page d'Index</strong>, qui sert de hub central au projet. Ça a été un sacré défi technique car elle intègre plusieurs systèmes complexes :</p>
+            <ul>
+                <li>Le <strong>Search Overlay</strong> pour filtrer les Pokémon en temps réel.</li>
+                <li>Le <strong>Système d'Authentification</strong> avec des onglets switchables en JS pour la connexion et l'inscription.</li>
+                <li>La <strong>Gestion des Favoris</strong> via une fenêtre modale dédiée.</li>
+                <li>Le <strong>Hero Slider</strong> qui permet de passer de l'affichage du Pokémon aléatoire à la présentation détaillée de l'univers Tyradex.</li>
+            </ul>
+            <p class="impact">La plus grosse galère ? Faire en sorte que tous ces overlays (`#search-overlay`, `#favs-overlay`, `#auth-overlay`) cohabitent sans casser le design global !</p>
+        </div>
+
+        <div class="card glass quote-box">
+            <div class="profile">
+                <h3>Fabio</h3>
+                <span class="role">Collection, Ressources & Filtrage</span>
+            </div>
+            <p>De mon côté, j'ai géré l'affichage de masse et l'organisation des données sur les pages <strong>Collection</strong> et <strong>Ressources</strong> :</p>
+            <ul>
+                <li>L'affichage de la <strong>Grille de Collection</strong> incluant plus de 1000 Pokémon chargés dynamiquement.</li>
+                <li>Le développement du <strong>Moteur de Filtrage</strong> horizontal (Types & Générations) avec une logique "ET" stricte.</li>
+                <li>La mise en place de la <strong>Page Ressources</strong> pour documenter l'utilisation de l'API Tyradex.</li>
+                <li>L'optimisation du chargement des sprites pour garantir la fluidité de la galerie.</li>
+            </ul>
+            <p class="impact">Mon défi majeur a été de dompter le CSS pour que les menus déroulants de filtrage flottent proprement au-dessus de la grille sans être tronqués par le reste du layout.</p>
+        </div>
+    </div>
+
+    <div class="card glass">
+        <h2>🔥 Les murs qu'on a dû franchir</h2>
+        <div class="difficulty-grid">
+            <div class="diff-item">
+                <h4>Conflits de Z-Index</h4>
+                <p>Entre les headers fixes, les overlays d'Alex et les dropdowns de Fabio, la gestion des couches a été une bataille permanente.</p>
+            </div>
+            <div class="diff-item">
+                <h4>Parsing API</h4>
+                <p>Adapter nos structures Go aux subtilités du JSON renvoyé par Tyradex (stats, types multiples, sprites régionaux).</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- OVERLAY FAVORIS -->
+<div id="favs-overlay" class="generic-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Favoris</h2>
+            <label for="toggle-favs" class="close-btn">&times;</label>
+        </div>
+
+        <div class="favs-list">
+            {{if .Favorites}}
+            {{range .Favorites}}
+            <a href="/ressource?id={{.PokedexId}}" class="fav-item" style="text-decoration:none; color:inherit;">
+                <img src="{{.Sprites.Regular}}" alt="{{.Name.Fr}}" width="60" height="60" style="object-fit:contain;">
+                <div>
+                    <div style="font-weight:800;">{{.Name.Fr}}</div>
+                    <div style="opacity:.7;">#{{.PokedexId}}</div>
+                </div>
+            </a>
+            {{end}}
+            {{else}}
+            <p>Aucun favori.</p>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<!-- OVERLAY AUTH (placeholder) -->
+<div id="auth-overlay" class="generic-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Compte</h2>
+            <label for="toggle-auth" class="close-btn">&times;</label>
+        </div>
+        <p>Coming soon…</p>
+    </div>
+</div>
+
+<!-- OVERLAY SEARCH (placeholder) -->
+<div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+        <div class="search-top-bar">
+            <form method="GET" action="/ressources">
+                <input type="text" name="q" placeholder="Rechercher un Pokémon (FR)..." value="{{.Query}}">
+                <button type="submit">OK</button>
+            </form>
+            <label for="toggle-search" class="clear-search-btn">Fermer</label>
+        </div>
+        <p style="margin-top:10px; opacity:.7;">La recherche complète est sur la page Ressources.</p>
+    </div>
+</div>
+
+</body>
+</html>

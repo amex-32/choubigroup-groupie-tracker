@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - Collection</title>
+    <link rel="stylesheet" href="/static/css/collection.css">
+</head>
+
+<body>
+
+<input type="checkbox" id="toggle-search" class="state-checkbox" style="display: none;" {{if .Query}}checked{{end}}>
+<input type="checkbox" id="toggle-favs" class="state-checkbox" style="display: none;">
+<input type="checkbox" id="toggle-auth" class="state-checkbox" style="display: none;">
+
+<header class="header">
+    <a href="/index">Accueil</a>
+    <a href="/collection">Collection</a>
+    <a href="/ressources">Ressources</a>
+    <a href="/categorie">Catégorie</a>
+    <a href="/aPropos">A-Propos</a>
+
+    <label for="toggle-favs" class="header-icon-transparent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+    </label>
+
+    <label for="toggle-auth" class="header-icon-transparent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </label>
+
+    <label for="toggle-search" class="header-icon-transparent" style="cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+    </label>
+</header>
+
+<main class="container collection-page">
+    <form method="GET" action="/collection" class="filter-toolbar">
+        <div class="search-bar-container">
+            <input type="text" name="search" placeholder="Rechercher un Pokémon..." value="{{.Query}}">
+            <button type="submit">Rechercher</button>
+        </div>
+
+        <div class="dropdowns-container">
+            <details class="filter-dropdown">
+                <summary>Types d'Énergie</summary>
+                <div class="dropdown-content">
+                    {{$selTypes := .Types}}
+                    <label><input type="checkbox" name="type" value="Acier" {{range $selTypes}}{{if eq . "Acier"}}checked{{end}}{{end}}> Acier</label>
+                    <label><input type="checkbox" name="type" value="Combat" {{range $selTypes}}{{if eq . "Combat"}}checked{{end}}{{end}}> Combat</label>
+                    <label><input type="checkbox" name="type" value="Dragon" {{range $selTypes}}{{if eq . "Dragon"}}checked{{end}}{{end}}> Dragon</label>
+                    <label><input type="checkbox" name="type" value="Eau" {{range $selTypes}}{{if eq . "Eau"}}checked{{end}}{{end}}> Eau</label>
+                    <label><input type="checkbox" name="type" value="Électrik" {{range $selTypes}}{{if eq . "Électrik"}}checked{{end}}{{end}}> Électrik</label>
+                    <label><input type="checkbox" name="type" value="Fée" {{range $selTypes}}{{if eq . "Fée"}}checked{{end}}{{end}}> Fée</label>
+                    <label><input type="checkbox" name="type" value="Feu" {{range $selTypes}}{{if eq . "Feu"}}checked{{end}}{{end}}> Feu</label>
+                    <label><input type="checkbox" name="type" value="Glace" {{range $selTypes}}{{if eq . "Glace"}}checked{{end}}{{end}}> Glace</label>
+                    <label><input type="checkbox" name="type" value="Insecte" {{range $selTypes}}{{if eq . "Insecte"}}checked{{end}}{{end}}> Insecte</label>
+                    <label><input type="checkbox" name="type" value="Normal" {{range $selTypes}}{{if eq . "Normal"}}checked{{end}}{{end}}> Normal</label>
+                    <label><input type="checkbox" name="type" value="Plante" {{range $selTypes}}{{if eq . "Plante"}}checked{{end}}{{end}}> Plante</label>
+                    <label><input type="checkbox" name="type" value="Poison" {{range $selTypes}}{{if eq . "Poison"}}checked{{end}}{{end}}> Poison</label>
+                    <label><input type="checkbox" name="type" value="Psy" {{range $selTypes}}{{if eq . "Psy"}}checked{{end}}{{end}}> Psy</label>
+                    <label><input type="checkbox" name="type" value="Roche" {{range $selTypes}}{{if eq . "Roche"}}checked{{end}}{{end}}> Roche</label>
+                    <label><input type="checkbox" name="type" value="Sol" {{range $selTypes}}{{if eq . "Sol"}}checked{{end}}{{end}}> Sol</label>
+                    <label><input type="checkbox" name="type" value="Spectre" {{range $selTypes}}{{if eq . "Spectre"}}checked{{end}}{{end}}> Spectre</label>
+                    <label><input type="checkbox" name="type" value="Ténèbres" {{range $selTypes}}{{if eq . "Ténèbres"}}checked{{end}}{{end}}> Ténèbres</label>
+                    <label><input type="checkbox" name="type" value="Vol" {{range $selTypes}}{{if eq . "Vol"}}checked{{end}}{{end}}> Vol</label>
+                </div>
+            </details>
+
+            <details class="filter-dropdown">
+                <summary>Générations</summary>
+                <div class="dropdown-content">
+                    {{$selGens := .Gens}}
+                    <label><input type="checkbox" name="gen" value="1" {{range $selGens}}{{if eq . "1"}}checked{{end}}{{end}}> Gen 1</label>
+                    <label><input type="checkbox" name="gen" value="2" {{range $selGens}}{{if eq . "2"}}checked{{end}}{{end}}> Gen 2</label>
+                    <label><input type="checkbox" name="gen" value="3" {{range $selGens}}{{if eq . "3"}}checked{{end}}{{end}}> Gen 3</label>
+                    <label><input type="checkbox" name="gen" value="4" {{range $selGens}}{{if eq . "4"}}checked{{end}}{{end}}> Gen 4</label>
+                    <label><input type="checkbox" name="gen" value="5" {{range $selGens}}{{if eq . "5"}}checked{{end}}{{end}}> Gen 5</label>
+                    <label><input type="checkbox" name="gen" value="6" {{range $selGens}}{{if eq . "6"}}checked{{end}}{{end}}> Gen 6</label>
+                    <label><input type="checkbox" name="gen" value="7" {{range $selGens}}{{if eq . "7"}}checked{{end}}{{end}}> Gen 7</label>
+                    <label><input type="checkbox" name="gen" value="8" {{range $selGens}}{{if eq . "8"}}checked{{end}}{{end}}> Gen 8</label>
+                    <label><input type="checkbox" name="gen" value="9" {{range $selGens}}{{if eq . "9"}}checked{{end}}{{end}}> Gen 9</label>
+                </div>
+            </details>
+
+            <details class="filter-dropdown">
+                <summary>Formes & Spéciaux</summary>
+                <div class="dropdown-content">
+                    {{$selFormes := .Formes}}
+                    <label><input type="checkbox" name="forme" value="Mega" {{range $selFormes}}{{if eq . "Mega"}}checked{{end}}{{end}}> Méga-Évolution</label>
+                    <label><input type="checkbox" name="forme" value="Gmax" {{range $selFormes}}{{if eq . "Gmax"}}checked{{end}}{{end}}> Gigamax</label>
+                    <label><input type="checkbox" name="forme" value="Alola" {{range $selFormes}}{{if eq . "Alola"}}checked{{end}}{{end}}> Forme Alola</label>
+                    <label><input type="checkbox" name="forme" value="Galar" {{range $selFormes}}{{if eq . "Galar"}}checked{{end}}{{end}}> Forme Galar</label>
+                    <label><input type="checkbox" name="forme" value="Hisui" {{range $selFormes}}{{if eq . "Hisui"}}checked{{end}}{{end}}> Forme Hisui</label>
+                    <label><input type="checkbox" name="forme" value="Paldea" {{range $selFormes}}{{if eq . "Paldea"}}checked{{end}}{{end}}> Forme Paldea</label>
+                </div>
+            </details>
+        </div>
+
+        <div class="filter-actions">
+            <a href="/collection" class="btn-reset">Réinitialiser</a>
+        </div>
+    </form>
+
+    <section class="collection-grid">
+        {{range .Pokedex}}
+        <div class="card-wrapper">
+            <details class="pokemon-card-expand">
+                <summary>
+                    <span class="pokedex-id">#{{.PokedexId}}</span>
+                    <img src="{{.Sprites.Regular}}" alt="{{.Name.Fr}}" class="sprite-img">
+                    <h3 class="pokemon-name">{{.Name.Fr}}</h3>
+                    <p class="pokemon-gen">Gen {{.Generation}}</p>
+                </summary>
+                <div class="card-details-content">
+                    <div class="details-grid">
+                        <div class="detail-stat"><strong>Type:</strong> {{range .Types}}{{.Name}} {{end}}</div>
+                        <div class="detail-stat"><strong>Poids:</strong> {{.Weight}}</div>
+                        <div class="detail-stat"><strong>Taille:</strong> {{.Height}}</div>
+                        <div class="detail-stat"><strong>Catégorie:</strong> {{.Category}}</div>
+                    </div>
+                    <div class="base-stats">
+                        PV: {{.Stats.Hp}} | ATK: {{.Stats.Atk}} | DEF: {{.Stats.Def}} | VIT: {{.Stats.Vit}}
+                    </div>
+
+                </div>
+            </details>
+            <div class="modal-overlay"></div>
+        </div>
+        {{else}}
+        <div class="empty-state">Aucun Pokémon trouvé.</div>
+        {{end}}
+    </section>
+</main>
+
+
+<!-- OVERLAY FAVORIS -->
+<div id="favs-overlay" class="generic-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Favoris</h2>
+            <label for="toggle-favs" class="close-btn">&times;</label>
+        </div>
+
+        <div class="favs-list">
+            {{if .Favorites}}
+            {{range .Favorites}}
+            <a href="/ressource?id={{.PokedexId}}" class="fav-item" style="text-decoration:none; color:inherit;">
+                <img src="{{.Sprites.Regular}}" alt="{{.Name.Fr}}" width="60" height="60" style="object-fit:contain;">
+                <div>
+                    <div style="font-weight:800;">{{.Name.Fr}}</div>
+                    <div style="opacity:.7;">#{{.PokedexId}}</div>
+                </div>
+            </a>
+            {{end}}
+            {{else}}
+            <p>Aucun favori.</p>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<!-- OVERLAY AUTH (placeholder) -->
+<div id="auth-overlay" class="generic-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Compte</h2>
+            <label for="toggle-auth" class="close-btn">&times;</label>
+        </div>
+        <p>Coming soon…</p>
+    </div>
+</div>
+
+<!-- OVERLAY SEARCH (placeholder) -->
+<div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+        <div class="search-top-bar">
+            <form method="GET" action="/ressources">
+                <input type="text" name="q" placeholder="Rechercher un Pokémon (FR)..." value="{{.Query}}">
+                <button type="submit">OK</button>
+            </form>
+            <label for="toggle-search" class="clear-search-btn">Fermer</label>
+        </div>
+        <p style="margin-top:10px; opacity:.7;">La recherche complète est sur la page Ressources.</p>
+    </div>
+</div>
+
+</body>
+</html>
