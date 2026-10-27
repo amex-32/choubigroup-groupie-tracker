@@ -1,4 +1,7 @@
 {
-  "builds": [{ "src": "api/index.go", "use": "@vercel/go" }],
+  "builds": [
+    { "src": "api/index.go", "use": "@vercel/go" },
+    { "src": "static/**", "use": "@vercel/static" }
+  ],
   "routes": [{ "handle": "filesystem" }, { "src": "/(.*)", "dest": "/api/index.go" }]
 }
