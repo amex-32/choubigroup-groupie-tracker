@@ -1,4 +1,5 @@
 // Point d'entrée Vercel : même routeur que main.go, servi par une fonction serverless.
+// Les fichiers de static/ sont servis directement par Vercel (route "filesystem").
 package handler
 
 import (
@@ -18,7 +19,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	once.Do(func() {
 		initTemp.Init()
 		mux = router.New()
-		mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(initTemp.BaseDir()+"/static"))))
 	})
 	mux.ServeHTTP(w, r)
 }
