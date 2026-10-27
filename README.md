@@ -15,6 +15,10 @@ go run .
 
 Le site est ensuite disponible sur http://localhost:8080.
 
+## Hébergement
+
+Le dossier `src` est déployé sur Vercel comme fonction Go (`src/api/index.go`, `src/vercel.json`), avec `src` comme dossier racine du projet.
+
 ## Structure
 
 - `src/main.go` : point d'entrée
